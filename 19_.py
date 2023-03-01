@@ -43,6 +43,31 @@ class Solution:
                 head = head.next
             i += 1
         return r.next
+    
+## 只遍历一次的解法：
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        if not head: return
+        if (not head.next) and (n==1):
+            return 
+        p1 = head
+        for i in range(n):
+            p1 = p1.next
+        p2 = dummy = ListNode(0)
+        p2.next = head
+        while (p1 is not None):
+            p1 = p1.next
+            p2 = p2.next
+        p2.next = p2.next.next   # TODO：注意这里不要写成 p2 = p2.next.next，否则指向的值都不改变
+        while p2:
+            p2 = p2.next
+        return dummy.next
+    
 if __name__=='__main__':
     a = Solution()
     l = LinkList()
