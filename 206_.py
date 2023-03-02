@@ -9,6 +9,7 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
+        # 解法一：
         if head == None or head.next == None:
             return head
         p1 = head
@@ -20,3 +21,13 @@ class Solution(object):
             p1 = p2
             p2 = p3
         return p1
+
+        # 解法二：递归
+        if head == None or head.next == None:
+            return head
+        last = Solution.reverseList(self, head.next)
+        head.next.next = head
+        head.next = None
+        return last
+    
+    
