@@ -9,6 +9,7 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
+    # 解法一：遍历思维
     def exchange(self, root):
         if root == None:
             return 
@@ -26,4 +27,17 @@ class Solution(object):
         """
         self.exchange(root)
         # self.pre(root)
+        return root
+    
+    # 解法二：分解思维
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if root == None:
+            return None
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
+        root.left, root.right = right, left
         return root
